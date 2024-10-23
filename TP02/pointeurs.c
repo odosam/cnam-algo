@@ -1,63 +1,64 @@
-    #include <stdio.h>
-    #include <stdbool.h>
-    #include <string.h>
-    #include <stdlib.h>
-
-void partie1(){
-    int x = 5;
-    int y = 10; 
-
-    //affichage
-    printf("Valeur de x : %d \n", x);
-    printf("Valeur de y : %d \n", y);
-
-    printf("Adresse de x : %p \n", &x);
-    printf("Adresse de y : %p \n", &y);
-
-    // conversion des adresses en long int pour faire des calculs
-    long int addr_x = (long int)&x;
-    long int addr_y = (long int)&y;
-
-    // affichage en long int
-    printf("Adresse de x en long int : %ld\n", addr_x);
-    printf("Adresse de y en long int : %ld\n", addr_y);
-
-    // différence entre les adresses
-    long int difference = addr_y - addr_x;
-    printf("Difference entre les adresses : %ld\n", difference);
-
-    //Alignement de variable ---- sizeof : taille en octet de la variable
-    int x1 = 5;
-    double x2 = 5.55;
-    float x3 = 8.555;
-    char x4 = 'A';
-
-    printf("Taille de x1 (int)  : %ld\n", sizeof(x1));
-    printf("Taille de x2 (double)  : %ld\n", sizeof(x2));
-    printf("Taille de x3 (float)  : %ld\n", sizeof(x3));
-    printf("Taille de x4 (char)  : %ld\n", sizeof(x4));
+#include <stdio.h>
+#include <stdbool.h>
+#include <string.h>
+#include <stdlib.h>
 
 
-    // Alignement d'un tableau
-    int tab[5] = {0,1,2,3,4};
+// void partie1(){
+//     int x = 5;
+//     int y = 10; 
 
-    for(int i = 0 ; i < 5 ; i++){
-        int a = tab[i];
-        long int addr = (long int) &a;
+//     //affichage
+//     printf("Valeur de x : %d \n", x);
+//     printf("Valeur de y : %d \n", y);
 
-        printf("Adresse occurence %d  : %ld\n", i, &tab[i]);
-    }
+//     printf("Adresse de x : %p \n", &x);
+//     printf("Adresse de y : %p \n", &y);
 
-    //Effet de ++ sur un pointeur
-    int cpt = 0;
-    cpt++;
-    printf("CPT : %ld \n", cpt);
+//     // conversion des adresses en long int pour faire des calculs
+//     long int addr_x = (long int)&x;
+//     long int addr_y = (long int)&y;
 
-    int* cpt2 = 0;
-    cpt2++; 
-    printf("CPT2 : %ld \n", cpt2); // cpt sans pointeur c'est +1, avec pointeur +4
+//     // affichage en long int
+//     printf("Adresse de x en long int : %ld\n", addr_x);
+//     printf("Adresse de y en long int : %ld\n", addr_y);
 
-}
+//     // différence entre les adresses
+//     long int difference = addr_y - addr_x;
+//     printf("Difference entre les adresses : %ld\n", difference);
+
+//     //Alignement de variable ---- sizeof : taille en octet de la variable
+//     int x1 = 5;
+//     double x2 = 5.55;
+//     float x3 = 8.555;
+//     char x4 = 'A';
+
+//     printf("Taille de x1 (int)  : %ld\n", sizeof(x1));
+//     printf("Taille de x2 (double)  : %ld\n", sizeof(x2));
+//     printf("Taille de x3 (float)  : %ld\n", sizeof(x3));
+//     printf("Taille de x4 (char)  : %ld\n", sizeof(x4));
+
+
+//     // Alignement d'un tableau
+//     int tab[5] = {0,1,2,3,4};
+
+//     for(int i = 0 ; i < 5 ; i++){
+//         int a = tab[i];
+//         long int addr = (long int) &a;
+
+//         printf("Adresse occurence %d  : %ld\n", i, &tab[i]);
+//     }
+
+//     //Effet de ++ sur un pointeur
+//     int cpt = 0;
+//     cpt++;
+//     printf("CPT : %ld \n", cpt);
+
+//     int* cpt2 = 0;
+//     cpt2++; 
+//     printf("CPT2 : %ld \n", cpt2); // cpt sans pointeur c'est +1, avec pointeur +4
+
+// }
 
 void calculTab(float tab[], int taille, float* min, float* moy, float* max){
 //Fonction qui fait calcule le min, le max et la moyenne d'un tableau de float
@@ -138,31 +139,32 @@ int find_sub_string(char* chaine1,char* chaine2){
         //si la lettre de la ch1 correspond à la ch2 : on compare la ch1[i+1] à ch2[i+1]
             // si la même chose, on continue
     
-    int longueur1 = 0;
-    int longueur2 = 0;
+    int longueur1 = 0, longueur2 = 0;
 
-    // while(chaine1 != '\0'){
-    //     longueur1++;
-    // }
+    while(chaine1[longueur1] != '\0'){
+        longueur1++;
+    }
 
-    // while(chaine2 != '\0'){
-    //     longueur2++;
-    // }
+    while(chaine2[longueur2] != '\0'){
+        longueur2++;
+    }
+
+    printf("Longueur chaine 1 : %d \n",longueur1);
 
     // tant que i est inférieur à la longueur de la chaine - longueur chaine 2
-    // for(int i = 0 ; i < longueur1 - longueur2 ; i++){
-    //     int j;
-    //     for(j = 0 ; j < longueur2 ; j++){
-    //         if(chaine1[i+j] != chaine2[j]){
-    //             break;
-    //         }
-    //     }
-    //     if(j == longueur2){
-    //         return i;
+    for(int i = 0 ; i < longueur1 - longueur2 ; i++){
+        int j;
+        for(j = 0 ; j < longueur2 ; j++){
+            if(chaine1[i+j] != chaine2[j]){
+                break;
+            }
+        }
+        if(j == longueur2){
+            return i;
 
-    //     }
+        }
         
-    // }
+    }
     
     return -1;
 
@@ -220,8 +222,9 @@ int main(){
     // Sous chaine
     char chaine1[] ="Salut c'est moi !";
     char chaine2[] = "c'est";
+    int position;
 
-    int position = find_sub_string(chaine1, chaine2);
+    position = find_sub_string(chaine1, chaine2);
 
     if(position != -1){
         printf("Voici la position de la sous chaine : %d \n",position);
